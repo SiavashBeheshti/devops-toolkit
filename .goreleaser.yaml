@@ -1,0 +1,89 @@
+# GoReleaser configuration
+version: 2
+
+project_name: devops-toolkit
+
+before:
+  hooks:
+    - go mod tidy
+
+builds:
+  - id: devops-toolkit
+    main: ./main.go
+    binary: devops-toolkit
+    env:
+      - CGO_ENABLED=0
+    goos:
+      - linux
+      - darwin
+      - windows
+    goarch:
+      - amd64
+      - arm64
+    ignore:
+      - goos: windows
+        goarch: arm64
+    ldflags:
+      - -s -w
+      - -X main.version={{.Version}}
+      - -X main.commit={{.Commit}}
+      - -X main.date={{.Date}}
+
+archives:
+  - id: default
+    format: tar.gz
+    name_template: >-
+      {{ .ProjectName }}_
+      {{- .Version }}_
+      {{- .Os }}_
+      {{- .Arch }}
+    format_overrides:
+      - goos: windows
+        format: zip
+    files:
+      - README.md
+      - LICENSE
+
+checksum:
+  name_template: 'checksums.txt'
+
+snapshot:
+  version_template: "{{ incpatch .Version }}-next"
+
+changelog:
+  sort: asc
+  filters:
+    exclude:
+      - '^docs:'
+      - '^test:'
+      - '^ci:'
+      - Merge pull request
+      - Merge branch
+
+brews:
+  - name: devops-toolkit
+    repository:
+      owner: beheshti
+      name: homebrew-tap
+    commit_author:
+      name: goreleaserbot
+      email: bot@goreleaser.com
+    homepage: https://github.com/beheshti/devops-toolkit
+    description: A powerful DevOps CLI toolkit
+    license: MIT
+    skip_upload: auto
+
+nfpms:
+  - id: packages
+    package_name: devops-toolkit
+    vendor: DevOps Toolkit
+    homepage: https://github.com/beheshti/devops-toolkit
+    maintainer: DevOps Toolkit <devops@example.com>
+    description: A powerful DevOps CLI toolkit
+    license: MIT
+    formats:
+      - deb
+      - rpm
+      - apk
+    bindir: /usr/bin
+
