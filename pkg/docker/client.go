@@ -13,8 +13,6 @@ import (
 	"github.com/docker/docker/api/types"
 	"github.com/docker/docker/api/types/container"
 	"github.com/docker/docker/api/types/filters"
-	"github.com/docker/docker/api/types/image"
-	"github.com/docker/docker/api/types/network"
 	"github.com/docker/docker/api/types/volume"
 	"github.com/docker/docker/client"
 )
@@ -124,7 +122,7 @@ type ImageInfo struct {
 
 // ListImages lists Docker images
 func (c *Client) ListImages(ctx context.Context, all, danglingOnly bool) ([]ImageInfo, error) {
-	opts := image.ListOptions{All: all}
+	opts := types.ImageListOptions{All: all}
 
 	if danglingOnly {
 		opts.Filters = filters.NewArgs()
@@ -555,7 +553,7 @@ func (c *Client) RemoveImages(ctx context.Context, images []ImageInfo) (int, int
 	var spaceReclaimed int64
 
 	for _, img := range images {
-		_, err := c.cli.ImageRemove(ctx, img.ID, image.RemoveOptions{})
+		_, err := c.cli.ImageRemove(ctx, img.ID, types.ImageRemoveOptions{})
 		if err == nil {
 			deleted++
 			spaceReclaimed += img.Size
@@ -566,7 +564,7 @@ func (c *Client) RemoveImages(ctx context.Context, images []ImageInfo) (int, int
 
 // FindUnusedNetworks finds unused networks
 func (c *Client) FindUnusedNetworks(ctx context.Context) ([]NetworkDetails, error) {
-	networks, err := c.cli.NetworkList(ctx, network.ListOptions{})
+	networks, err := c.cli.NetworkList(ctx, types.NetworkListOptions{})
 	if err != nil {
 		return nil, err
 	}
@@ -579,7 +577,7 @@ func (c *Client) FindUnusedNetworks(ctx context.Context) ([]NetworkDetails, erro
 		}
 
 		// Check if network has no containers
-		inspect, err := c.cli.NetworkInspect(ctx, net.ID, network.InspectOptions{})
+		inspect, err := c.cli.NetworkInspect(ctx, net.ID, types.NetworkInspectOptions{})
 		if err != nil {
 			continue
 		}

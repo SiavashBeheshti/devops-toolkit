@@ -31,18 +31,19 @@ func (c *DockerChecker) Run(ctx context.Context) ([]CheckResult, error) {
 
 	var results []CheckResult
 
-	// Container security checks
+	// If a specific image is provided, only check that image
+	if c.opts.Image != "" {
+		imageResults, err := c.checkImage(ctx, c.opts.Image)
+		if err != nil {
+			return nil, fmt.Errorf("failed to check image %s: %w", c.opts.Image, err)
+		}
+		return imageResults, nil
+	}
+
+	// Otherwise, check all running containers
 	containerResults, err := c.checkContainerSecurity(ctx)
 	if err == nil {
 		results = append(results, containerResults...)
-	}
-
-	// Image checks
-	if c.opts.Image != "" {
-		imageResults, err := c.checkImage(ctx, c.opts.Image)
-		if err == nil {
-			results = append(results, imageResults...)
-		}
 	}
 
 	return results, nil

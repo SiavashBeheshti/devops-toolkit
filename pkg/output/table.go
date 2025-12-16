@@ -70,21 +70,21 @@ func (t *Table) RenderTo(w io.Writer) {
 	table.SetAutoFormatHeaders(true)
 	table.SetHeaderAlignment(tablewriter.ALIGN_LEFT)
 	table.SetAlignment(tablewriter.ALIGN_LEFT)
-	table.SetCenterSeparator("")
-	table.SetColumnSeparator("")
-	table.SetRowSeparator("")
-	table.SetHeaderLine(false)
 	table.SetTablePadding("  ")
-	table.SetNoWhiteSpace(true)
 
 	if t.config.ShowBorder {
 		table.SetBorder(true)
-		table.SetCenterSeparator("─")
+		table.SetCenterSeparator("┼")
 		table.SetColumnSeparator("│")
 		table.SetRowSeparator("─")
 		table.SetHeaderLine(true)
+		table.SetRowLine(false)
 	} else {
 		table.SetBorder(false)
+		table.SetCenterSeparator("")
+		table.SetColumnSeparator("  ")
+		table.SetRowSeparator("")
+		table.SetHeaderLine(false)
 	}
 
 	if t.config.ShowRowLine {

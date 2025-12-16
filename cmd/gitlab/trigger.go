@@ -3,7 +3,6 @@ package gitlab
 import (
 	"fmt"
 
-	"github.com/beheshti/devops-toolkit/pkg/gitlabclient"
 	"github.com/beheshti/devops-toolkit/pkg/output"
 	"github.com/spf13/cobra"
 )

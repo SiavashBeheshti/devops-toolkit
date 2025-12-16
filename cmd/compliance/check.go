@@ -27,8 +27,9 @@ Examples:
   devops-toolkit compliance check k8s
   devops-toolkit compliance check docker --image nginx:latest
   devops-toolkit compliance check files --path ./manifests`,
-		Args: cobra.MinimumNArgs(1),
-		RunE: runCheck,
+		Args:         cobra.MinimumNArgs(1),
+		RunE:         runCheck,
+		SilenceUsage: true, // Don't show usage on compliance failures
 	}
 
 	cmd.Flags().String("image", "", "Docker image to check")

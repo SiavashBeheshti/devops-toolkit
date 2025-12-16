@@ -78,7 +78,7 @@ func (c *Client) ListPipelines(projectID string, filter PipelineFilter) ([]Pipel
 		// Get duration from detailed pipeline info
 		detailed, _, err := c.client.Pipelines.GetPipeline(projectID, pl.ID)
 		if err == nil && detailed.Duration > 0 {
-			info.Duration = formatDuration(detailed.Duration)
+			info.Duration = formatDuration(float64(detailed.Duration))
 		}
 
 		result = append(result, info)
@@ -132,7 +132,7 @@ func (c *Client) ListPipelineJobs(projectID string, pipelineID int, filter JobFi
 		}
 
 		if job.Duration > 0 {
-			info.Duration = formatDuration(job.Duration)
+			info.Duration = formatDuration(float64(job.Duration))
 		}
 
 		if job.StartedAt != nil {
@@ -196,7 +196,7 @@ func (c *Client) WaitForPipeline(projectID string, pipelineID int) (*PipelineInf
 				Ref:      pipeline.Ref,
 				SHA:      pipeline.SHA,
 				WebURL:   pipeline.WebURL,
-				Duration: formatDuration(pipeline.Duration),
+				Duration: formatDuration(float64(pipeline.Duration)),
 			}, nil
 		}
 
@@ -324,7 +324,7 @@ func (c *Client) GetLatestPipeline(projectID, ref string) (*PipelineInfo, error)
 		Ref:      detailed.Ref,
 		SHA:      detailed.SHA,
 		WebURL:   detailed.WebURL,
-		Duration: formatDuration(detailed.Duration),
+		Duration: formatDuration(float64(detailed.Duration)),
 	}, nil
 }
 
@@ -369,7 +369,7 @@ func (c *Client) GetPipelineStats(projectID string) (*PipelineStats, error) {
 		// Get duration
 		detailed, _, err := c.client.Pipelines.GetPipeline(projectID, pl.ID)
 		if err == nil && detailed.Duration > 0 {
-			totalDuration += detailed.Duration
+			totalDuration += float64(detailed.Duration)
 			durationCount++
 		}
 	}

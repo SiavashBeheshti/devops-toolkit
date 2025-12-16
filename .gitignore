@@ -1,4 +1,4 @@
-# Binaries
+# Build artifacts
 build/
 dist/
 *.exe
@@ -6,38 +6,55 @@ dist/
 *.dll
 *.so
 *.dylib
-devops-toolkit
 
-# Test binary, built with `go test -c`
+# Test binary and coverage
 *.test
-
-# Output of the go coverage tool
 *.out
+coverage.txt
 coverage.html
 
-# Dependency directories
+# Go workspace
+go.work
+go.work.sum
+
+# Dependency directories (if not vendoring)
 vendor/
 
-# Go workspace file
-go.work
-
-# IDE
+# IDE and editor files
 .idea/
 .vscode/
 *.swp
 *.swo
 *~
+.project
+.classpath
+.settings/
+*.sublime-project
+*.sublime-workspace
 
-# OS
+# OS generated files
 .DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
 Thumbs.db
 
-# Config files with secrets
-.devops-toolkit.yaml
+# Environment and local config
 .env
-*.local
+.env.local
+.env.*.local
+*.local.yaml
+*.local.yml
+config.local.*
 
 # Debug files
 debug
 *.log
 
+# Temporary files
+tmp/
+temp/
+*.tmp
+*.temp

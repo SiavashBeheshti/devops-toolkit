@@ -68,7 +68,7 @@ func runStats(cmd *cobra.Command, args []string) error {
 	// Build table
 	table := output.NewTable(output.TableConfig{
 		Title:      "Container Statistics",
-		Headers:    []string{"Container", "CPU %", "Mem Usage", "Mem %", "Net I/O", "Block I/O", "PIDs"},
+		Headers:    []string{"Container", "CPU %", "Memory", "Mem %", "Net I/O", "Block I/O", "PIDs"},
 		ShowBorder: true,
 	})
 
@@ -76,9 +76,8 @@ func runStats(cmd *cobra.Command, args []string) error {
 	var totalMemUsage, totalMemLimit int64
 
 	for _, stat := range stats {
-		cpuBar := output.ProgressBar(int(stat.CPUPercent), 100, 15)
-		memBar := output.ProgressBar(int(stat.MemoryPercent), 100, 15)
-
+		cpuPercent := fmt.Sprintf("%.1f%%", stat.CPUPercent)
+		memPercent := fmt.Sprintf("%.1f%%", stat.MemoryPercent)
 		memUsage := fmt.Sprintf("%s / %s", formatSize(stat.MemoryUsage), formatSize(stat.MemoryLimit))
 		netIO := fmt.Sprintf("%s / %s", formatSize(stat.NetInput), formatSize(stat.NetOutput))
 		blockIO := fmt.Sprintf("%s / %s", formatSize(stat.BlockInput), formatSize(stat.BlockOutput))
@@ -86,9 +85,9 @@ func runStats(cmd *cobra.Command, args []string) error {
 		table.AddColoredRow(
 			[]string{
 				truncateName(stat.Name, 20),
-				cpuBar,
+				cpuPercent,
 				memUsage,
-				memBar,
+				memPercent,
 				netIO,
 				blockIO,
 				fmt.Sprintf("%d", stat.PIDs),

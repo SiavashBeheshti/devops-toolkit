@@ -4,7 +4,6 @@ import (
 	"context"
 	"fmt"
 	"sort"
-	"strings"
 
 	"github.com/beheshti/devops-toolkit/pkg/docker"
 	"github.com/beheshti/devops-toolkit/pkg/output"
