@@ -1,7 +1,3 @@
-<p align="center">
-  <img src="https://raw.githubusercontent.com/beheshti/devops-toolkit/main/.github/assets/logo.png" alt="DevOps Toolkit Logo" width="200"/>
-</p>
-
 <h1 align="center">DevOps Toolkit</h1>
 
 <p align="center">
@@ -773,7 +769,7 @@ Distributed under the MIT License. See [LICENSE](LICENSE) for more information.
 ---
 
 <p align="center">
-  Made with ❤️ by <a href="https://github.com/beheshti">@beheshti</a>
+  Made with ❤️ by <a href="https://github.com/SiavashBeheshti">@SiavashBeheshti</a>
 </p>
 
 <p align="center">
