@@ -3,7 +3,6 @@ package gitlab
 import (
 	"fmt"
 	"os"
-	"strings"
 
 	"github.com/beheshti/devops-toolkit/pkg/gitlabclient"
 	"github.com/beheshti/devops-toolkit/pkg/output"
@@ -188,15 +187,5 @@ func detectProjectFromGit() string {
 	// Try to detect project from git remote
 	// This is a simplified implementation
 	return ""
-}
-
-// Helper to check if string contains any of the suffixes
-func hasSuffix(s string, suffixes ...string) bool {
-	for _, suffix := range suffixes {
-		if strings.HasSuffix(s, suffix) {
-			return true
-		}
-	}
-	return false
 }
 

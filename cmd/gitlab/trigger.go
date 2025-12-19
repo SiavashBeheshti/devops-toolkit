@@ -23,7 +23,7 @@ Examples:
 	cmd.Flags().StringArrayP("variable", "v", nil, "Pipeline variables (KEY=value)")
 	cmd.Flags().Bool("wait", false, "Wait for pipeline to complete")
 
-	cmd.MarkFlagRequired("ref")
+	_ = cmd.MarkFlagRequired("ref")
 
 	return cmd
 }

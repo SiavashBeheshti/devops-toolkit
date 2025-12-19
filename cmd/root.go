@@ -59,8 +59,8 @@ func init() {
 	rootCmd.PersistentFlags().StringP("output", "o", "table", "output format (table, json, yaml)")
 
 	// Bind flags to viper
-	viper.BindPFlag("verbose", rootCmd.PersistentFlags().Lookup("verbose"))
-	viper.BindPFlag("output", rootCmd.PersistentFlags().Lookup("output"))
+	_ = viper.BindPFlag("verbose", rootCmd.PersistentFlags().Lookup("verbose"))
+	_ = viper.BindPFlag("output", rootCmd.PersistentFlags().Lookup("output"))
 
 	// Add subcommands
 	rootCmd.AddCommand(k8s.NewK8sCmd())
@@ -87,8 +87,8 @@ func initConfig() {
 	viper.SetEnvPrefix("DEVOPS")
 	viper.AutomaticEnv()
 
-	// Read config file if it exists
-	viper.ReadInConfig()
+	// Read config file if it exists (ignore error if config file doesn't exist)
+	_ = viper.ReadInConfig()
 }
 
 // versionCmd shows version information

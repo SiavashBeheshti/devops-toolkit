@@ -330,7 +330,7 @@ func (c *Client) InspectContainer(ctx context.Context, containerID string) (*Con
 		}
 		if len(bindings) > 0 {
 			pm.IP = bindings[0].HostIP
-			fmt.Sscanf(bindings[0].HostPort, "%d", &pm.PublicPort)
+			_, _ = fmt.Sscanf(bindings[0].HostPort, "%d", &pm.PublicPort)
 		}
 		details.Ports = append(details.Ports, pm)
 	}

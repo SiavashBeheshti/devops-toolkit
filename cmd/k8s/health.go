@@ -85,10 +85,9 @@ func runHealth(cmd *cobra.Command, args []string) error {
 		output.SpinnerError("Failed to check pods")
 	} else {
 		output.StopSpinner()
-		healthy := podHealth.Failed == 0 && podHealth.Pending < 5
 		details := fmt.Sprintf("Running: %d, Pending: %d, Failed: %d",
 			podHealth.Running, podHealth.Pending, podHealth.Failed)
-		status := getHealthStatus(healthy)
+		var status string
 		if podHealth.Failed > 0 {
 			status = fmt.Sprintf("%s %d Failed", output.IconError, podHealth.Failed)
 		} else if podHealth.Pending > 5 {

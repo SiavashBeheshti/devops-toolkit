@@ -17,7 +17,7 @@ type Printer struct {
 // NewPrinter creates a new Printer instance
 func NewPrinter() *Printer {
 	s := spinner.New(spinner.CharSets[14], 100*time.Millisecond)
-	s.Color("magenta", "bold")
+	_ = s.Color("magenta", "bold")
 	return &Printer{
 		spinner: s,
 	}
@@ -246,4 +246,3 @@ func Summary(title string, items map[string]string) {
 func Newline() {
 	fmt.Println()
 }
-

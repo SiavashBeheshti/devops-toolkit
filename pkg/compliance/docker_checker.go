@@ -58,10 +58,7 @@ func (c *DockerChecker) checkContainerSecurity(ctx context.Context) ([]CheckResu
 	}
 
 	for _, cont := range containers {
-		name := cont.Names[0]
-		if strings.HasPrefix(name, "/") {
-			name = name[1:]
-		}
+		name := strings.TrimPrefix(cont.Names[0], "/")
 
 		// Inspect container for detailed info
 		inspect, err := c.client.ContainerInspect(ctx, cont.ID)
