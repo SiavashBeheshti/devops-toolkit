@@ -5,11 +5,11 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/beheshti/devops-toolkit/releases"><img src="https://img.shields.io/github/v/release/beheshti/devops-toolkit?style=flat-square&color=7C3AED" alt="Release"></a>
-  <a href="https://github.com/beheshti/devops-toolkit/blob/main/LICENSE"><img src="https://img.shields.io/badge/license-MIT-green.svg?style=flat-square" alt="License"></a>
-  <a href="https://goreportcard.com/report/github.com/beheshti/devops-toolkit"><img src="https://goreportcard.com/badge/github.com/beheshti/devops-toolkit?style=flat-square" alt="Go Report Card"></a>
+  <a href="https://github.com/SiavashBeheshti/devops-toolkit/releases"><img src="https://img.shields.io/github/v/release/SiavashBeheshti/devops-toolkit?style=flat-square&color=7C3AED" alt="Release"></a>
+  <a href="https://github.com/SiavashBeheshti/devops-toolkit/blob/main/LICENSE"><img src="https://img.shields.io/badge/license-MIT-green.svg?style=flat-square" alt="License"></a>
+  <a href="https://goreportcard.com/report/github.com/SiavashBeheshti/devops-toolkit"><img src="https://goreportcard.com/badge/github.com/SiavashBeheshti/devops-toolkit?style=flat-square" alt="Go Report Card"></a>
   <img src="https://img.shields.io/badge/Go-1.21+-00ADD8?style=flat-square&logo=go" alt="Go Version">
-  <a href="https://github.com/beheshti/devops-toolkit/actions"><img src="https://img.shields.io/github/actions/workflow/status/beheshti/devops-toolkit/ci.yml?style=flat-square" alt="Build Status"></a>
+  <a href="https://github.com/SiavashBeheshti/devops-toolkit/actions"><img src="https://img.shields.io/github/actions/workflow/status/SiavashBeheshti/devops-toolkit/ci.yml?style=flat-square" alt="Build Status"></a>
 </p>
 
 <p align="center">
@@ -32,7 +32,7 @@ Native DevOps tools often provide minimal, hard-to-read output. **DevOps Toolkit
 - **⚡ Productivity Boost** — Common operations simplified into single commands
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/beheshti/devops-toolkit/main/.github/assets/demo.gif" alt="DevOps Toolkit Demo" width="800"/>
+  <img src="https://raw.githubusercontent.com/SiavashBeheshti/devops-toolkit/main/.github/assets/demo.gif" alt="DevOps Toolkit Demo" width="800"/>
 </p>
 
 ---
@@ -194,28 +194,28 @@ Native DevOps tools often provide minimal, hard-to-read output. **DevOps Toolkit
 ### Homebrew (macOS/Linux)
 
 ```bash
-brew tap beheshti/tap
+brew tap SiavashBeheshti/tap
 brew install devops-toolkit
 ```
 
 ### Go Install
 
 ```bash
-go install github.com/beheshti/devops-toolkit@latest
+go install github.com/SiavashBeheshti/devops-toolkit@latest
 ```
 
 ### Download Binary
 
-Download the latest binary from the [Releases](https://github.com/beheshti/devops-toolkit/releases) page.
+Download the latest binary from the [Releases](https://github.com/SiavashBeheshti/devops-toolkit/releases) page.
 
 ```bash
 # Linux (amd64)
-curl -LO https://github.com/beheshti/devops-toolkit/releases/latest/download/devops-toolkit-linux-amd64.tar.gz
+curl -LO https://github.com/SiavashBeheshti/devops-toolkit/releases/latest/download/devops-toolkit-linux-amd64.tar.gz
 tar -xzf devops-toolkit-linux-amd64.tar.gz
 sudo mv devops-toolkit /usr/local/bin/
 
 # macOS (Apple Silicon)
-curl -LO https://github.com/beheshti/devops-toolkit/releases/latest/download/devops-toolkit-darwin-arm64.tar.gz
+curl -LO https://github.com/SiavashBeheshti/devops-toolkit/releases/latest/download/devops-toolkit-darwin-arm64.tar.gz
 tar -xzf devops-toolkit-darwin-arm64.tar.gz
 sudo mv devops-toolkit /usr/local/bin/
 ```
@@ -223,7 +223,7 @@ sudo mv devops-toolkit /usr/local/bin/
 ### Build from Source
 
 ```bash
-git clone https://github.com/beheshti/devops-toolkit.git
+git clone https://github.com/SiavashBeheshti/devops-toolkit.git
 cd devops-toolkit
 make build
 sudo make install-local
@@ -232,13 +232,13 @@ sudo make install-local
 ### Docker
 
 ```bash
-docker pull ghcr.io/beheshti/devops-toolkit:latest
+docker pull ghcr.io/SiavashBeheshti/devops-toolkit:latest
 
 # Run with kubectl config
 docker run -it --rm \
   -v ~/.kube:/root/.kube \
   -v /var/run/docker.sock:/var/run/docker.sock \
-  ghcr.io/beheshti/devops-toolkit k8s health
+  ghcr.io/SiavashBeheshti/devops-toolkit k8s health
 ```
 
 ---
@@ -687,7 +687,7 @@ devops-toolkit/
 
 ```bash
 # Clone repository
-git clone https://github.com/beheshti/devops-toolkit.git
+git clone https://github.com/SiavashBeheshti/devops-toolkit.git
 cd devops-toolkit
 
 # Install dependencies
@@ -734,7 +734,7 @@ make clean         # Clean build artifacts
 - [ ] Prometheus metrics querying
 - [ ] Log aggregation (Loki/ELK)
 
-See the [open issues](https://github.com/beheshti/devops-toolkit/issues) for a full list of proposed features.
+See the [open issues](https://github.com/SiavashBeheshti/devops-toolkit/issues) for a full list of proposed features.
 
 ---
 
@@ -773,5 +773,5 @@ Distributed under the MIT License. See [LICENSE](LICENSE) for more information.
 </p>
 
 <p align="center">
-  <a href="https://github.com/beheshti/devops-toolkit/stargazers">⭐ Star this repo</a> if you find it useful!
+  <a href="https://github.com/SiavashBeheshti/devops-toolkit/stargazers">⭐ Star this repo</a> if you find it useful!
 </p>
