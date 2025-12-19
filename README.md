@@ -191,13 +191,6 @@ Native DevOps tools often provide minimal, hard-to-read output. **DevOps Toolkit
 
 ## 📦 Installation
 
-### Homebrew (macOS/Linux)
-
-```bash
-brew tap SiavashBeheshti/tap
-brew install devops-toolkit
-```
-
 ### Go Install
 
 ```bash
@@ -209,15 +202,31 @@ go install github.com/SiavashBeheshti/devops-toolkit@latest
 Download the latest binary from the [Releases](https://github.com/SiavashBeheshti/devops-toolkit/releases) page.
 
 ```bash
+# Set the version you want to install
+VERSION="1.0.0"
+
 # Linux (amd64)
-curl -LO https://github.com/SiavashBeheshti/devops-toolkit/releases/latest/download/devops-toolkit-linux-amd64.tar.gz
-tar -xzf devops-toolkit-linux-amd64.tar.gz
-sudo mv devops-toolkit /usr/local/bin/
+curl -LO "https://github.com/SiavashBeheshti/devops-toolkit/releases/download/v${VERSION}/devops-toolkit_${VERSION}_linux_amd64"
+chmod +x devops-toolkit_${VERSION}_linux_amd64
+sudo mv devops-toolkit_${VERSION}_linux_amd64 /usr/local/bin/devops-toolkit
+
+# Linux (arm64)
+curl -LO "https://github.com/SiavashBeheshti/devops-toolkit/releases/download/v${VERSION}/devops-toolkit_${VERSION}_linux_arm64"
+chmod +x devops-toolkit_${VERSION}_linux_arm64
+sudo mv devops-toolkit_${VERSION}_linux_arm64 /usr/local/bin/devops-toolkit
+
+# macOS (Intel)
+curl -LO "https://github.com/SiavashBeheshti/devops-toolkit/releases/download/v${VERSION}/devops-toolkit_${VERSION}_darwin_amd64"
+chmod +x devops-toolkit_${VERSION}_darwin_amd64
+sudo mv devops-toolkit_${VERSION}_darwin_amd64 /usr/local/bin/devops-toolkit
 
 # macOS (Apple Silicon)
-curl -LO https://github.com/SiavashBeheshti/devops-toolkit/releases/latest/download/devops-toolkit-darwin-arm64.tar.gz
-tar -xzf devops-toolkit-darwin-arm64.tar.gz
-sudo mv devops-toolkit /usr/local/bin/
+curl -LO "https://github.com/SiavashBeheshti/devops-toolkit/releases/download/v${VERSION}/devops-toolkit_${VERSION}_darwin_arm64"
+chmod +x devops-toolkit_${VERSION}_darwin_arm64
+sudo mv devops-toolkit_${VERSION}_darwin_arm64 /usr/local/bin/devops-toolkit
+
+# Windows (amd64) - using PowerShell
+# Invoke-WebRequest -Uri "https://github.com/SiavashBeheshti/devops-toolkit/releases/download/v${VERSION}/devops-toolkit_${VERSION}_windows_amd64.exe" -OutFile "devops-toolkit.exe"
 ```
 
 ### Build from Source
@@ -239,6 +248,32 @@ docker run -it --rm \
   -v ~/.kube:/root/.kube \
   -v /var/run/docker.sock:/var/run/docker.sock \
   ghcr.io/SiavashBeheshti/devops-toolkit k8s health
+```
+
+### Shell Alias (Optional)
+
+For convenience, you can set up a shorter alias:
+
+```bash
+# Bash (~/.bashrc)
+echo 'alias dtk="devops-toolkit"' >> ~/.bashrc
+source ~/.bashrc
+
+# Zsh (~/.zshrc)
+echo 'alias dtk="devops-toolkit"' >> ~/.zshrc
+source ~/.zshrc
+
+# Fish (~/.config/fish/config.fish)
+echo 'alias dtk="devops-toolkit"' >> ~/.config/fish/config.fish
+source ~/.config/fish/config.fish
+```
+
+Then use `dtk` instead of `devops-toolkit`:
+
+```bash
+dtk k8s health
+dtk docker stats
+dtk gitlab pipelines
 ```
 
 ---
