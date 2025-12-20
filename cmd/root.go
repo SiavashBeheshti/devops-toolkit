@@ -3,11 +3,11 @@ package cmd
 import (
 	"os"
 
-	"github.com/beheshti/devops-toolkit/cmd/compliance"
-	"github.com/beheshti/devops-toolkit/cmd/docker"
-	"github.com/beheshti/devops-toolkit/cmd/gitlab"
-	"github.com/beheshti/devops-toolkit/cmd/k8s"
-	"github.com/beheshti/devops-toolkit/pkg/output"
+	"github.com/SiavashBeheshti/devops-toolkit/cmd/compliance"
+	"github.com/SiavashBeheshti/devops-toolkit/cmd/docker"
+	"github.com/SiavashBeheshti/devops-toolkit/cmd/gitlab"
+	"github.com/SiavashBeheshti/devops-toolkit/cmd/k8s"
+	"github.com/SiavashBeheshti/devops-toolkit/pkg/output"
 	"github.com/spf13/cobra"
 	"github.com/spf13/viper"
 )
@@ -104,4 +104,3 @@ var versionCmd = &cobra.Command{
 		output.Newline()
 	},
 }
-

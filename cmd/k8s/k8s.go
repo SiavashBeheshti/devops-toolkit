@@ -1,7 +1,7 @@
 package k8s
 
 import (
-	"github.com/beheshti/devops-toolkit/pkg/completion"
+	"github.com/SiavashBeheshti/devops-toolkit/pkg/completion"
 	"github.com/spf13/cobra"
 )
 
@@ -36,4 +36,3 @@ with beautiful, informative output that goes beyond kubectl.`,
 
 	return cmd
 }
-

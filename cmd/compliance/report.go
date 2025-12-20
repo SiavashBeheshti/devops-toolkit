@@ -8,9 +8,9 @@ import (
 	"strings"
 	"time"
 
-	"github.com/beheshti/devops-toolkit/pkg/compliance"
-	"github.com/beheshti/devops-toolkit/pkg/completion"
-	"github.com/beheshti/devops-toolkit/pkg/output"
+	"github.com/SiavashBeheshti/devops-toolkit/pkg/completion"
+	"github.com/SiavashBeheshti/devops-toolkit/pkg/compliance"
+	"github.com/SiavashBeheshti/devops-toolkit/pkg/output"
 	"github.com/spf13/cobra"
 )
 
@@ -359,4 +359,3 @@ func generateHTMLReport(report compliance.Report) string {
 
 	return html
 }
-

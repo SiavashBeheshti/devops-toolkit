@@ -4,8 +4,8 @@ import (
 	"context"
 	"fmt"
 
-	"github.com/beheshti/devops-toolkit/pkg/k8s"
-	"github.com/beheshti/devops-toolkit/pkg/output"
+	"github.com/SiavashBeheshti/devops-toolkit/pkg/k8s"
+	"github.com/SiavashBeheshti/devops-toolkit/pkg/output"
 	"github.com/spf13/cobra"
 )
 
@@ -223,4 +223,3 @@ func runCleanup(cmd *cobra.Command, args []string) error {
 	output.Newline()
 	return nil
 }
-

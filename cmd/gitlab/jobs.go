@@ -4,8 +4,8 @@ import (
 	"fmt"
 	"strings"
 
-	"github.com/beheshti/devops-toolkit/pkg/gitlabclient"
-	"github.com/beheshti/devops-toolkit/pkg/output"
+	"github.com/SiavashBeheshti/devops-toolkit/pkg/gitlabclient"
+	"github.com/SiavashBeheshti/devops-toolkit/pkg/output"
 	"github.com/olekukonko/tablewriter"
 	"github.com/spf13/cobra"
 )
@@ -221,4 +221,3 @@ func getJobSummaryColors(status string) []tablewriter.Colors {
 		{color},
 	}
 }
-

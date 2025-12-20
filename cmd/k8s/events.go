@@ -5,8 +5,8 @@ import (
 	"fmt"
 	"strings"
 
-	"github.com/beheshti/devops-toolkit/pkg/k8s"
-	"github.com/beheshti/devops-toolkit/pkg/output"
+	"github.com/SiavashBeheshti/devops-toolkit/pkg/k8s"
+	"github.com/SiavashBeheshti/devops-toolkit/pkg/output"
 	"github.com/olekukonko/tablewriter"
 	"github.com/spf13/cobra"
 )
@@ -173,11 +173,10 @@ func getEventRowColors(event k8s.EventInfo) []tablewriter.Colors {
 	}
 
 	return []tablewriter.Colors{
-		{tablewriter.FgHiBlackColor}, // age
+		{tablewriter.FgHiBlackColor},  // age
 		{tablewriter.Bold, typeColor}, // type
 		{reasonColor},                 // reason
 		{tablewriter.FgCyanColor},     // object
 		{tablewriter.FgWhiteColor},    // message
 	}
 }
-

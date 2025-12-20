@@ -4,8 +4,8 @@ import (
 	"context"
 	"fmt"
 
-	"github.com/beheshti/devops-toolkit/pkg/k8s"
-	"github.com/beheshti/devops-toolkit/pkg/output"
+	"github.com/SiavashBeheshti/devops-toolkit/pkg/k8s"
+	"github.com/SiavashBeheshti/devops-toolkit/pkg/output"
 	"github.com/olekukonko/tablewriter"
 	"github.com/spf13/cobra"
 )
@@ -157,11 +157,11 @@ func getNodeRowColors(node k8s.NodeInfo, showResources, wide bool) []tablewriter
 	}
 
 	colors := []tablewriter.Colors{
-		{tablewriter.FgCyanColor},        // name
-		{tablewriter.Bold, statusColor},  // status
-		{tablewriter.FgMagentaColor},     // roles
-		{tablewriter.FgHiBlackColor},     // age
-		{tablewriter.FgWhiteColor},       // version
+		{tablewriter.FgCyanColor},       // name
+		{tablewriter.Bold, statusColor}, // status
+		{tablewriter.FgMagentaColor},    // roles
+		{tablewriter.FgHiBlackColor},    // age
+		{tablewriter.FgWhiteColor},      // version
 	}
 
 	if showResources {
@@ -194,4 +194,3 @@ func getResourceColor(percent float64) int {
 		return tablewriter.FgGreenColor
 	}
 }
-

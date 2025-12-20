@@ -4,8 +4,8 @@ import (
 	"context"
 	"fmt"
 
-	"github.com/beheshti/devops-toolkit/pkg/k8s"
-	"github.com/beheshti/devops-toolkit/pkg/output"
+	"github.com/SiavashBeheshti/devops-toolkit/pkg/k8s"
+	"github.com/SiavashBeheshti/devops-toolkit/pkg/output"
 	"github.com/olekukonko/tablewriter"
 	"github.com/spf13/cobra"
 )
@@ -102,7 +102,7 @@ func runResources(cmd *cobra.Command, args []string) error {
 			fmt.Sprintf("%d", clusterRes.PodCapacity),
 			output.ProgressBar(clusterRes.PodCount*100/clusterRes.PodCapacity, 100, 20),
 		},
-		getResourceRowColors(float64(clusterRes.PodCount) / float64(clusterRes.PodCapacity) * 100),
+		getResourceRowColors(float64(clusterRes.PodCount)/float64(clusterRes.PodCapacity)*100),
 	)
 
 	summaryTable.Render()
@@ -259,4 +259,3 @@ func getResourceColorInt(percent float64) int {
 		return tablewriter.FgGreenColor
 	}
 }
-

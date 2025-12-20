@@ -76,7 +76,7 @@ git clone https://github.com/YOUR_USERNAME/devops-toolkit.git
 cd devops-toolkit
 
 # Add upstream remote
-git remote add upstream https://github.com/beheshti/devops-toolkit.git
+git remote add upstream https://github.com/SiavashBeheshti/devops-toolkit.git
 
 # Install dependencies
 go mod download
@@ -164,7 +164,7 @@ refactor(output): simplify table rendering logic
 package mycommand
 
 import (
-    "github.com/beheshti/devops-toolkit/pkg/output"
+    "github.com/SiavashBeheshti/devops-toolkit/pkg/output"
     "github.com/spf13/cobra"
 )
 

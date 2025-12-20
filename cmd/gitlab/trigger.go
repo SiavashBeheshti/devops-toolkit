@@ -3,7 +3,7 @@ package gitlab
 import (
 	"fmt"
 
-	"github.com/beheshti/devops-toolkit/pkg/output"
+	"github.com/SiavashBeheshti/devops-toolkit/pkg/output"
 	"github.com/spf13/cobra"
 )
 
@@ -107,4 +107,3 @@ func splitVar(v string) []string {
 	}
 	return []string{v}
 }
-

@@ -3,8 +3,8 @@ package gitlab
 import (
 	"fmt"
 
-	"github.com/beheshti/devops-toolkit/pkg/gitlabclient"
-	"github.com/beheshti/devops-toolkit/pkg/output"
+	"github.com/SiavashBeheshti/devops-toolkit/pkg/gitlabclient"
+	"github.com/SiavashBeheshti/devops-toolkit/pkg/output"
 	"github.com/olekukonko/tablewriter"
 	"github.com/spf13/cobra"
 )
@@ -130,4 +130,3 @@ func formatArtifactSize(bytes int64) string {
 		return fmt.Sprintf("%d B", bytes)
 	}
 }
-

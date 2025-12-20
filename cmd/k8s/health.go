@@ -5,8 +5,8 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/beheshti/devops-toolkit/pkg/k8s"
-	"github.com/beheshti/devops-toolkit/pkg/output"
+	"github.com/SiavashBeheshti/devops-toolkit/pkg/k8s"
+	"github.com/SiavashBeheshti/devops-toolkit/pkg/output"
 	"github.com/olekukonko/tablewriter"
 	"github.com/spf13/cobra"
 )
@@ -152,7 +152,7 @@ func runHealth(cmd *cobra.Command, args []string) error {
 		output.SpinnerError("Could not get resource utilization (metrics-server may not be installed)")
 	} else {
 		output.StopSpinner()
-		
+
 		resourceTable := output.NewTable(output.TableConfig{
 			Title:      "Resource Utilization",
 			Headers:    []string{"Resource", "Used", "Capacity", "Utilization"},
@@ -295,4 +295,3 @@ func truncate(s string, maxLen int) string {
 	}
 	return s[:maxLen-3] + "..."
 }
-

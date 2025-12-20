@@ -4,8 +4,8 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/beheshti/devops-toolkit/pkg/gitlabclient"
-	"github.com/beheshti/devops-toolkit/pkg/output"
+	"github.com/SiavashBeheshti/devops-toolkit/pkg/gitlabclient"
+	"github.com/SiavashBeheshti/devops-toolkit/pkg/output"
 	"github.com/spf13/cobra"
 	"github.com/spf13/viper"
 )
@@ -188,4 +188,3 @@ func detectProjectFromGit() string {
 	// This is a simplified implementation
 	return ""
 }
-

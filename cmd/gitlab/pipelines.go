@@ -4,9 +4,9 @@ import (
 	"fmt"
 	"strings"
 
-	"github.com/beheshti/devops-toolkit/pkg/completion"
-	"github.com/beheshti/devops-toolkit/pkg/gitlabclient"
-	"github.com/beheshti/devops-toolkit/pkg/output"
+	"github.com/SiavashBeheshti/devops-toolkit/pkg/completion"
+	"github.com/SiavashBeheshti/devops-toolkit/pkg/gitlabclient"
+	"github.com/SiavashBeheshti/devops-toolkit/pkg/output"
 	"github.com/olekukonko/tablewriter"
 	"github.com/spf13/cobra"
 )
@@ -156,12 +156,12 @@ func getPipelineRowColors(status string) []tablewriter.Colors {
 	}
 
 	return []tablewriter.Colors{
-		{tablewriter.FgCyanColor},        // ID
-		{tablewriter.Bold, statusColor},  // Status
-		{tablewriter.FgMagentaColor},     // Ref
-		{tablewriter.FgHiBlackColor},     // Commit
-		{tablewriter.FgHiBlackColor},     // Created
-		{tablewriter.FgWhiteColor},       // Duration
+		{tablewriter.FgCyanColor},       // ID
+		{tablewriter.Bold, statusColor}, // Status
+		{tablewriter.FgMagentaColor},    // Ref
+		{tablewriter.FgHiBlackColor},    // Commit
+		{tablewriter.FgHiBlackColor},    // Created
+		{tablewriter.FgWhiteColor},      // Duration
 	}
 }
 
@@ -173,4 +173,3 @@ func formatDuration(timeStr string) string {
 	// Simplified - just return the time string
 	return timeStr
 }
-

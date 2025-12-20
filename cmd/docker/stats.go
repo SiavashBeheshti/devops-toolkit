@@ -4,8 +4,8 @@ import (
 	"context"
 	"fmt"
 
-	"github.com/beheshti/devops-toolkit/pkg/docker"
-	"github.com/beheshti/devops-toolkit/pkg/output"
+	"github.com/SiavashBeheshti/devops-toolkit/pkg/docker"
+	"github.com/SiavashBeheshti/devops-toolkit/pkg/output"
 	"github.com/olekukonko/tablewriter"
 	"github.com/spf13/cobra"
 )
@@ -156,13 +156,13 @@ func getStatsRowColors(stat docker.ContainerStats) []tablewriter.Colors {
 	memColor := getResourceColorByPercent(stat.MemoryPercent)
 
 	return []tablewriter.Colors{
-		{tablewriter.FgCyanColor},     // Name
-		{cpuColor},                    // CPU
-		{tablewriter.FgWhiteColor},    // Mem Usage
-		{memColor},                    // Mem %
-		{tablewriter.FgHiBlackColor},  // Net I/O
-		{tablewriter.FgHiBlackColor},  // Block I/O
-		{tablewriter.FgWhiteColor},    // PIDs
+		{tablewriter.FgCyanColor},    // Name
+		{cpuColor},                   // CPU
+		{tablewriter.FgWhiteColor},   // Mem Usage
+		{memColor},                   // Mem %
+		{tablewriter.FgHiBlackColor}, // Net I/O
+		{tablewriter.FgHiBlackColor}, // Block I/O
+		{tablewriter.FgWhiteColor},   // PIDs
 	}
 }
 
@@ -176,4 +176,3 @@ func getResourceColorByPercent(percent float64) int {
 		return tablewriter.FgGreenColor
 	}
 }
-

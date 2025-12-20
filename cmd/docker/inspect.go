@@ -5,9 +5,9 @@ import (
 	"fmt"
 	"strings"
 
-	"github.com/beheshti/devops-toolkit/pkg/completion"
-	"github.com/beheshti/devops-toolkit/pkg/docker"
-	"github.com/beheshti/devops-toolkit/pkg/output"
+	"github.com/SiavashBeheshti/devops-toolkit/pkg/completion"
+	"github.com/SiavashBeheshti/devops-toolkit/pkg/docker"
+	"github.com/SiavashBeheshti/devops-toolkit/pkg/output"
 	"github.com/spf13/cobra"
 )
 
@@ -212,4 +212,3 @@ func truncate(s string, maxLen int) string {
 	}
 	return s[:maxLen-3] + "..."
 }
-

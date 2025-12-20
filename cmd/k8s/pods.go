@@ -6,9 +6,9 @@ import (
 	"sort"
 	"strings"
 
-	"github.com/beheshti/devops-toolkit/pkg/completion"
-	"github.com/beheshti/devops-toolkit/pkg/k8s"
-	"github.com/beheshti/devops-toolkit/pkg/output"
+	"github.com/SiavashBeheshti/devops-toolkit/pkg/completion"
+	"github.com/SiavashBeheshti/devops-toolkit/pkg/k8s"
+	"github.com/SiavashBeheshti/devops-toolkit/pkg/output"
 	"github.com/olekukonko/tablewriter"
 	"github.com/spf13/cobra"
 )
@@ -205,12 +205,12 @@ func getPodRowColors(pod k8s.PodInfo, wide bool) []tablewriter.Colors {
 	}
 
 	colors := []tablewriter.Colors{
-		{tablewriter.FgCyanColor},    // namespace
-		{tablewriter.FgWhiteColor},   // name
-		{readyColor},                 // ready
+		{tablewriter.FgCyanColor},       // namespace
+		{tablewriter.FgWhiteColor},      // name
+		{readyColor},                    // ready
 		{tablewriter.Bold, statusColor}, // status
-		{restartColor},               // restarts
-		{tablewriter.FgHiBlackColor}, // age
+		{restartColor},                  // restarts
+		{tablewriter.FgHiBlackColor},    // age
 	}
 
 	if wide {
@@ -246,4 +246,3 @@ func printPodSummary(statusCounts map[string]int) {
 	}
 	output.Newline()
 }
-

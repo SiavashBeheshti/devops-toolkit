@@ -1,8 +1,8 @@
 package compliance
 
 import (
-	"github.com/beheshti/devops-toolkit/pkg/compliance"
-	"github.com/beheshti/devops-toolkit/pkg/output"
+	"github.com/SiavashBeheshti/devops-toolkit/pkg/compliance"
+	"github.com/SiavashBeheshti/devops-toolkit/pkg/output"
 	"github.com/olekukonko/tablewriter"
 	"github.com/spf13/cobra"
 )
@@ -115,4 +115,3 @@ func getPolicyRowColors(severity string) []tablewriter.Colors {
 		{tablewriter.FgHiBlackColor}, // Description
 	}
 }
-

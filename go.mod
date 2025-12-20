@@ -1,4 +1,4 @@
-module github.com/beheshti/devops-toolkit
+module github.com/SiavashBeheshti/devops-toolkit
 
 go 1.24.0
 

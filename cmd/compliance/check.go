@@ -5,9 +5,9 @@ import (
 	"fmt"
 	"strings"
 
-	"github.com/beheshti/devops-toolkit/pkg/compliance"
-	"github.com/beheshti/devops-toolkit/pkg/completion"
-	"github.com/beheshti/devops-toolkit/pkg/output"
+	"github.com/SiavashBeheshti/devops-toolkit/pkg/completion"
+	"github.com/SiavashBeheshti/devops-toolkit/pkg/compliance"
+	"github.com/SiavashBeheshti/devops-toolkit/pkg/output"
 	"github.com/olekukonko/tablewriter"
 	"github.com/spf13/cobra"
 )
@@ -296,11 +296,11 @@ func getCheckRowColors(r compliance.CheckResult) []tablewriter.Colors {
 	}
 
 	return []tablewriter.Colors{
-		{statusColor},                    // Status
-		{severityColor},                  // Severity
-		{tablewriter.FgCyanColor},        // Rule
-		{tablewriter.FgWhiteColor},       // Resource
-		{tablewriter.FgHiBlackColor},     // Message
+		{statusColor},                // Status
+		{severityColor},              // Severity
+		{tablewriter.FgCyanColor},    // Rule
+		{tablewriter.FgWhiteColor},   // Resource
+		{tablewriter.FgHiBlackColor}, // Message
 	}
 }
 
@@ -310,4 +310,3 @@ func truncateString(s string, maxLen int) string {
 	}
 	return s[:maxLen-3] + "..."
 }
-

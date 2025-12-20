@@ -5,9 +5,9 @@ import (
 	"fmt"
 	"sort"
 
-	"github.com/beheshti/devops-toolkit/pkg/completion"
-	"github.com/beheshti/devops-toolkit/pkg/docker"
-	"github.com/beheshti/devops-toolkit/pkg/output"
+	"github.com/SiavashBeheshti/devops-toolkit/pkg/completion"
+	"github.com/SiavashBeheshti/devops-toolkit/pkg/docker"
+	"github.com/SiavashBeheshti/devops-toolkit/pkg/output"
 	"github.com/olekukonko/tablewriter"
 	"github.com/spf13/cobra"
 )
@@ -213,11 +213,11 @@ func getImageRowColors(img docker.ImageInfo, showDigest bool) []tablewriter.Colo
 	}
 
 	colors := []tablewriter.Colors{
-		{repoColor},                      // Repository
-		{tagColor},                       // Tag
-		{tablewriter.FgHiBlackColor},     // ID
-		{tablewriter.FgHiBlackColor},     // Created
-		{tablewriter.FgYellowColor},      // Size
+		{repoColor},                  // Repository
+		{tagColor},                   // Tag
+		{tablewriter.FgHiBlackColor}, // ID
+		{tablewriter.FgHiBlackColor}, // Created
+		{tablewriter.FgYellowColor},  // Size
 	}
 
 	if showDigest {
@@ -226,4 +226,3 @@ func getImageRowColors(img docker.ImageInfo, showDigest bool) []tablewriter.Colo
 
 	return colors
 }
-

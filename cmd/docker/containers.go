@@ -5,8 +5,8 @@ import (
 	"fmt"
 	"strings"
 
-	"github.com/beheshti/devops-toolkit/pkg/docker"
-	"github.com/beheshti/devops-toolkit/pkg/output"
+	"github.com/SiavashBeheshti/devops-toolkit/pkg/docker"
+	"github.com/SiavashBeheshti/devops-toolkit/pkg/output"
 	"github.com/olekukonko/tablewriter"
 	"github.com/spf13/cobra"
 )
@@ -182,11 +182,11 @@ func getContainerRowColors(container docker.ContainerInfo, wide, showSize bool) 
 	}
 
 	colors := []tablewriter.Colors{
-		{tablewriter.FgCyanColor},        // ID
-		{tablewriter.FgWhiteColor},       // Image
-		{tablewriter.Bold, statusColor},  // Status
-		{tablewriter.FgHiBlackColor},     // Ports
-		{tablewriter.FgMagentaColor},     // Name
+		{tablewriter.FgCyanColor},       // ID
+		{tablewriter.FgWhiteColor},      // Image
+		{tablewriter.Bold, statusColor}, // Status
+		{tablewriter.FgHiBlackColor},    // Ports
+		{tablewriter.FgMagentaColor},    // Name
 	}
 
 	if wide {
@@ -201,4 +201,3 @@ func getContainerRowColors(container docker.ContainerInfo, wide, showSize bool) 
 
 	return colors
 }
-
