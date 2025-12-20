@@ -26,8 +26,6 @@ Supports checking:
 
 	// Persistent flags
 	cmd.PersistentFlags().StringP("policy-dir", "d", "", "Directory containing policy files")
-	cmd.PersistentFlags().StringP("output", "o", "table", "Output format (table, json, junit)")
 
 	return cmd
 }
-

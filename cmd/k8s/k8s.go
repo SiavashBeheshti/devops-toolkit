@@ -1,6 +1,7 @@
 package k8s
 
 import (
+	"github.com/beheshti/devops-toolkit/pkg/completion"
 	"github.com/spf13/cobra"
 )
 
@@ -28,6 +29,10 @@ with beautiful, informative output that goes beyond kubectl.`,
 	cmd.PersistentFlags().StringP("namespace", "n", "", "Kubernetes namespace (default: all namespaces)")
 	cmd.PersistentFlags().StringP("context", "c", "", "Kubernetes context to use")
 	cmd.PersistentFlags().String("kubeconfig", "", "Path to kubeconfig file")
+
+	// Register flag completions
+	_ = cmd.RegisterFlagCompletionFunc("namespace", completion.NamespaceCompletion)
+	_ = cmd.RegisterFlagCompletionFunc("context", completion.ContextCompletion)
 
 	return cmd
 }

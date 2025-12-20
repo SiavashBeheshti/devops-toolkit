@@ -5,46 +5,96 @@ import (
 	"encoding/json"
 	"fmt"
 	"os"
+	"strings"
 	"time"
 
 	"github.com/beheshti/devops-toolkit/pkg/compliance"
+	"github.com/beheshti/devops-toolkit/pkg/completion"
 	"github.com/beheshti/devops-toolkit/pkg/output"
 	"github.com/spf13/cobra"
 )
 
 func newReportCmd() *cobra.Command {
 	cmd := &cobra.Command{
-		Use:   "report",
+		Use:   "report [target]",
 		Short: "Generate compliance report",
 		Long: `Generate a comprehensive compliance report.
+
+Targets:
+  k8s           Check Kubernetes resources only
+  docker        Check Docker images and containers only
+  files         Check configuration files only
+  all           Run all available checks (default)
 
 Output formats:
   table     Console table output (default)
   json      JSON format for programmatic use
   junit     JUnit XML format for CI integration
-  html      HTML report for sharing`,
-		RunE: runReport,
+  html      HTML report for sharing
+
+Examples:
+  devops-toolkit compliance report                    Run all checks, output to console
+  devops-toolkit compliance report k8s -f html -o report.html
+  devops-toolkit compliance report docker -f json
+  devops-toolkit compliance report all -f junit -o results.xml`,
+		RunE:              runReport,
+		ValidArgsFunction: completion.ComplianceTargetCompletion,
 	}
 
 	cmd.Flags().StringP("format", "f", "table", "Output format (table, json, junit, html)")
-	cmd.Flags().StringP("file", "o", "", "Output file path")
+	cmd.Flags().StringP("output-file", "o", "", "Output file path")
 	cmd.Flags().String("title", "Compliance Report", "Report title")
 	cmd.Flags().Bool("include-passed", true, "Include passed checks in report")
+	cmd.Flags().StringP("namespace", "n", "", "Kubernetes namespace (for k8s target)")
+	cmd.Flags().String("image", "", "Docker image to check (for docker target)")
+
+	// Register flag completions
+	_ = cmd.RegisterFlagCompletionFunc("format", completion.ReportFormatCompletion)
+	_ = cmd.RegisterFlagCompletionFunc("namespace", completion.NamespaceCompletion)
+	_ = cmd.RegisterFlagCompletionFunc("image", completion.ImageCompletion)
 
 	return cmd
 }
 
 func runReport(cmd *cobra.Command, args []string) error {
 	format, _ := cmd.Flags().GetString("format")
-	outputFile, _ := cmd.Flags().GetString("file")
+	outputFile, _ := cmd.Flags().GetString("output-file")
 	title, _ := cmd.Flags().GetString("title")
 	includePassed, _ := cmd.Flags().GetBool("include-passed")
+	namespace, _ := cmd.Flags().GetString("namespace")
+	imageName, _ := cmd.Flags().GetString("image")
 
-	output.StartSpinner("Running compliance checks...")
+	// Determine target (default to "all")
+	target := "all"
+	if len(args) > 0 {
+		target = strings.ToLower(args[0])
+	}
 
-	// Run all checks
-	opts := compliance.CheckOptions{}
-	results, err := runAllChecks(context.Background(), opts)
+	opts := compliance.CheckOptions{
+		Namespace: namespace,
+		Image:     imageName,
+	}
+
+	var results []compliance.CheckResult
+	var err error
+
+	switch target {
+	case "k8s", "kubernetes":
+		output.StartSpinner("Running Kubernetes compliance checks...")
+		results, err = runK8sChecks(context.Background(), opts)
+	case "docker":
+		output.StartSpinner("Running Docker compliance checks...")
+		results, err = runDockerChecks(context.Background(), opts)
+	case "files", "file":
+		output.StartSpinner("Running file compliance checks...")
+		results, err = runFileChecks(context.Background(), opts)
+	case "all":
+		output.StartSpinner("Running all compliance checks...")
+		results, err = runAllChecks(context.Background(), opts)
+	default:
+		return fmt.Errorf("unknown target: %s (valid targets: k8s, docker, files, all)", target)
+	}
+
 	if err != nil {
 		output.SpinnerError("Failed to run checks")
 		return err

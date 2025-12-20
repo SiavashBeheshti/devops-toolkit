@@ -4,6 +4,7 @@ import (
 	"context"
 	"fmt"
 
+	"github.com/beheshti/devops-toolkit/pkg/completion"
 	"github.com/beheshti/devops-toolkit/pkg/docker"
 	"github.com/beheshti/devops-toolkit/pkg/output"
 	"github.com/spf13/cobra"
@@ -20,8 +21,9 @@ Features:
   • JSON log parsing
   • Timestamp formatting
   • Log level filtering`,
-		Args: cobra.ExactArgs(1),
-		RunE: runLogs,
+		Args:              cobra.ExactArgs(1),
+		RunE:              runLogs,
+		ValidArgsFunction: completion.RunningContainerCompletion,
 	}
 
 	cmd.Flags().IntP("tail", "n", 100, "Number of lines to show")
@@ -30,6 +32,9 @@ Features:
 	cmd.Flags().String("since", "", "Show logs since timestamp (e.g. 2023-01-01T00:00:00)")
 	cmd.Flags().String("until", "", "Show logs until timestamp")
 	cmd.Flags().String("level", "", "Filter by log level (error, warn, info, debug)")
+
+	// Register flag completions
+	_ = cmd.RegisterFlagCompletionFunc("level", completion.LogLevelCompletion)
 
 	return cmd
 }

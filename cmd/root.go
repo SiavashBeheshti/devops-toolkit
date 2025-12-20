@@ -56,7 +56,7 @@ func init() {
 	// Global flags
 	rootCmd.PersistentFlags().StringVar(&cfgFile, "config", "", "config file (default is $HOME/.devops-toolkit.yaml)")
 	rootCmd.PersistentFlags().BoolP("verbose", "v", false, "verbose output")
-	rootCmd.PersistentFlags().StringP("output", "o", "table", "output format (table, json, yaml)")
+	rootCmd.PersistentFlags().String("output", "table", "output format (table, json, yaml)")
 
 	// Bind flags to viper
 	_ = viper.BindPFlag("verbose", rootCmd.PersistentFlags().Lookup("verbose"))
@@ -67,6 +67,7 @@ func init() {
 	rootCmd.AddCommand(docker.NewDockerCmd())
 	rootCmd.AddCommand(gitlab.NewGitLabCmd())
 	rootCmd.AddCommand(compliance.NewComplianceCmd())
+	rootCmd.AddCommand(newCompletionCmd())
 	rootCmd.AddCommand(versionCmd)
 }
 

@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"sort"
 
+	"github.com/beheshti/devops-toolkit/pkg/completion"
 	"github.com/beheshti/devops-toolkit/pkg/docker"
 	"github.com/beheshti/devops-toolkit/pkg/output"
 	"github.com/olekukonko/tablewriter"
@@ -29,6 +30,9 @@ Features:
 	cmd.Flags().Bool("dangling", false, "Show only dangling images")
 	cmd.Flags().StringP("sort", "s", "size", "Sort by: name, size, created")
 	cmd.Flags().Bool("digest", false, "Show image digests")
+
+	// Register flag completions
+	_ = cmd.RegisterFlagCompletionFunc("sort", completion.ImageSortCompletion)
 
 	return cmd
 }

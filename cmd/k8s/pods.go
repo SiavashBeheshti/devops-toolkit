@@ -6,6 +6,7 @@ import (
 	"sort"
 	"strings"
 
+	"github.com/beheshti/devops-toolkit/pkg/completion"
 	"github.com/beheshti/devops-toolkit/pkg/k8s"
 	"github.com/beheshti/devops-toolkit/pkg/output"
 	"github.com/olekukonko/tablewriter"
@@ -32,6 +33,9 @@ Features:
 	cmd.Flags().Bool("wide", false, "Show additional information")
 	cmd.Flags().StringP("sort", "s", "name", "Sort by: name, status, age, restarts, namespace")
 	cmd.Flags().StringP("label", "l", "", "Label selector")
+
+	// Register flag completions
+	_ = cmd.RegisterFlagCompletionFunc("sort", completion.PodSortCompletion)
 
 	return cmd
 }

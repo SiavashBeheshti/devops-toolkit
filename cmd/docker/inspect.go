@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"strings"
 
+	"github.com/beheshti/devops-toolkit/pkg/completion"
 	"github.com/beheshti/devops-toolkit/pkg/docker"
 	"github.com/beheshti/devops-toolkit/pkg/output"
 	"github.com/spf13/cobra"
@@ -22,8 +23,9 @@ Shows:
   • Mount points
   • Environment variables
   • Health check status`,
-		Args: cobra.ExactArgs(1),
-		RunE: runInspect,
+		Args:              cobra.ExactArgs(1),
+		RunE:              runInspect,
+		ValidArgsFunction: completion.ContainerCompletion,
 	}
 
 	cmd.Flags().Bool("env", false, "Show environment variables")

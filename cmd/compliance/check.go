@@ -6,6 +6,7 @@ import (
 	"strings"
 
 	"github.com/beheshti/devops-toolkit/pkg/compliance"
+	"github.com/beheshti/devops-toolkit/pkg/completion"
 	"github.com/beheshti/devops-toolkit/pkg/output"
 	"github.com/olekukonko/tablewriter"
 	"github.com/spf13/cobra"
@@ -27,9 +28,10 @@ Examples:
   devops-toolkit compliance check k8s
   devops-toolkit compliance check docker --image nginx:latest
   devops-toolkit compliance check files --path ./manifests`,
-		Args:         cobra.MinimumNArgs(1),
-		RunE:         runCheck,
-		SilenceUsage: true, // Don't show usage on compliance failures
+		Args:              cobra.MinimumNArgs(1),
+		RunE:              runCheck,
+		SilenceUsage:      true, // Don't show usage on compliance failures
+		ValidArgsFunction: completion.ComplianceTargetCompletion,
 	}
 
 	cmd.Flags().String("image", "", "Docker image to check")
@@ -39,6 +41,11 @@ Examples:
 	cmd.Flags().StringSlice("only", nil, "Only run these rules")
 	cmd.Flags().String("severity", "", "Minimum severity to report (low, medium, high, critical)")
 	cmd.Flags().Bool("fail-on-warn", false, "Exit with error on warnings")
+
+	// Register flag completions
+	_ = cmd.RegisterFlagCompletionFunc("namespace", completion.NamespaceCompletion)
+	_ = cmd.RegisterFlagCompletionFunc("image", completion.ImageCompletion)
+	_ = cmd.RegisterFlagCompletionFunc("severity", completion.SeverityCompletion)
 
 	return cmd
 }

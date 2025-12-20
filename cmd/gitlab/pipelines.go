@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"strings"
 
+	"github.com/beheshti/devops-toolkit/pkg/completion"
 	"github.com/beheshti/devops-toolkit/pkg/gitlabclient"
 	"github.com/beheshti/devops-toolkit/pkg/output"
 	"github.com/olekukonko/tablewriter"
@@ -29,6 +30,9 @@ Features:
 	cmd.Flags().StringP("ref", "r", "", "Filter by branch/tag ref")
 	cmd.Flags().IntP("limit", "n", 20, "Number of pipelines to show")
 	cmd.Flags().Bool("all", false, "Show pipelines from all branches")
+
+	// Register flag completions
+	_ = cmd.RegisterFlagCompletionFunc("status", completion.PipelineStatusCompletion)
 
 	return cmd
 }

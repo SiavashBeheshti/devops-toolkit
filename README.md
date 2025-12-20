@@ -156,7 +156,7 @@ Native DevOps tools often provide minimal, hard-to-read output. **DevOps Toolkit
 | `compliance check k8s` | Kubernetes security best practices |
 | `compliance check docker` | Container security analysis |
 | `compliance check files` | Validate manifests & Dockerfiles |
-| `compliance report` | Generate HTML/JSON/JUnit reports |
+| `compliance report [target]` | Generate HTML/JSON/JUnit reports (k8s, docker, files, all) |
 | `compliance policies` | List all available policies |
 
 <details>
@@ -275,6 +275,66 @@ dtk k8s health
 dtk docker stats
 dtk gitlab pipelines
 ```
+
+### Shell Completion
+
+DevOps Toolkit supports shell auto-completion for commands, flags, and resource names (pods, containers, namespaces, etc.).
+
+#### Bash
+
+```bash
+# Linux
+devops-toolkit completion bash > /etc/bash_completion.d/devops-toolkit
+
+# macOS (with Homebrew)
+devops-toolkit completion bash > $(brew --prefix)/etc/bash_completion.d/devops-toolkit
+
+# Or load for current session only
+source <(devops-toolkit completion bash)
+```
+
+#### Zsh
+
+```bash
+# If shell completion is not already enabled:
+echo "autoload -U compinit; compinit" >> ~/.zshrc
+
+# Generate completion script
+devops-toolkit completion zsh > "${fpath[1]}/_devops-toolkit"
+
+# For Oh My Zsh users:
+devops-toolkit completion zsh > ~/.oh-my-zsh/completions/_devops-toolkit
+
+# Or load for current session only
+source <(devops-toolkit completion zsh)
+```
+
+#### Fish
+
+```bash
+devops-toolkit completion fish > ~/.config/fish/completions/devops-toolkit.fish
+
+# Or load for current session only
+devops-toolkit completion fish | source
+```
+
+#### PowerShell
+
+```powershell
+# Load for current session
+devops-toolkit completion powershell | Out-String | Invoke-Expression
+
+# Add to profile for persistent loading
+devops-toolkit completion powershell >> $PROFILE
+```
+
+#### What Gets Completed
+
+- **Commands & Subcommands**: `devops-toolkit k8s <TAB>` shows pods, nodes, health, etc.
+- **Flags**: `devops-toolkit k8s pods --<TAB>` shows available flags
+- **Kubernetes Resources**: Pod names, namespace names, container names, context names
+- **Docker Resources**: Container names/IDs, image names, volume names, network names
+- **Flag Values**: `--namespace <TAB>` lists namespaces, `--format <TAB>` shows format options
 
 ---
 
@@ -595,14 +655,23 @@ devops-toolkit compliance check k8s --fail-on-warn
 # REPORTS
 # ═══════════════════════════════════════════════════════════════════
 
-# Generate HTML report
+# Generate HTML report for all checks
 devops-toolkit compliance report -f html -o report.html
 
-# Generate JSON report
-devops-toolkit compliance report -f json -o report.json
+# Generate report for Kubernetes checks only
+devops-toolkit compliance report k8s -f html -o k8s-report.html
+
+# Generate report for Docker checks only
+devops-toolkit compliance report docker -f json -o docker-report.json
+
+# Generate report for file checks only
+devops-toolkit compliance report files -f html -o files-report.html
 
 # Generate JUnit XML (for CI integration)
 devops-toolkit compliance report -f junit -o results.xml
+
+# Generate report for specific namespace
+devops-toolkit compliance report k8s -n production -f html -o prod-report.html
 
 # Exclude passed checks from report
 devops-toolkit compliance report --include-passed=false
@@ -671,6 +740,7 @@ compliance:
 devops-toolkit/
 ├── cmd/                    # CLI commands (Cobra)
 │   ├── root.go            # Root command & global flags
+│   ├── completion.go      # Shell completion command
 │   ├── k8s/               # Kubernetes subcommands
 │   ├── docker/            # Docker subcommands
 │   ├── gitlab/            # GitLab subcommands
@@ -681,6 +751,10 @@ devops-toolkit/
 │   │   ├── theme.go       # Colors & styles (Lipgloss)
 │   │   ├── table.go       # Table rendering
 │   │   └── printer.go     # Print utilities & spinners
+│   ├── completion/        # Shell completion helpers
+│   │   ├── k8s.go         # K8s resource completions
+│   │   ├── docker.go      # Docker resource completions
+│   │   └── common.go      # Common completions
 │   ├── k8s/               # Kubernetes client wrapper
 │   ├── docker/            # Docker client wrapper
 │   ├── gitlabclient/      # GitLab API client
@@ -760,6 +834,7 @@ make clean         # Clean build artifacts
 - [x] Docker operations
 - [x] GitLab CI/CD integration
 - [x] Compliance checking
+- [x] Shell auto-completion (bash, zsh, fish, powershell)
 - [ ] GitHub Actions integration
 - [ ] AWS/GCP/Azure cloud operations
 - [ ] Terraform state viewer
